@@ -23,6 +23,6 @@ RUN \
 
 RUN x11vnc -storepasswd "1234" ~/.vnc/passwd
 
-RUN sh -c 'echo "firefox" >> ~/.bashrc'
+RUN sh -c 'echo "firefox https://edavki.durs.si" >> ~/.bashrc'
 
 CMD ["/usr/bin/x11vnc", "-forever", "-usepw", "-create"]
