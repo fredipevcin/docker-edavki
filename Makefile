@@ -13,10 +13,10 @@ docker/build: ## Builds docker image
 	docker build -t $(IMAGE_NAME) .
 
 docker/console:
-	docker run --rm -ti -v "$(CURDIR)/data":/root/data -w /root $(IMAGE_NAME) bash
+	docker exec -ti `docker ps -qf "name=${CONTAINER_NAME}"` bash
 
 run: ## Runs container
-	docker run -p 5900:5900 --rm -ti -v "$(CURDIR)/firefox":/root/.mozilla/firefox -v "$(CURDIR)/data":/root/data -w /root $(IMAGE_NAME)
+	docker run -p 5900:5900 --name $(CONTAINER_NAME) --rm -ti -v "$(CURDIR)/firefox":/root/.mozilla/firefox -v "$(CURDIR)/data":/root/data -w /root $(IMAGE_NAME)
 
 connect: ## Connect via VNC
 	open vnc://127.0.0.1:5900
