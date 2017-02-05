@@ -15,14 +15,14 @@ RUN \
     apt-get update && apt-get install -y \
         oracle-java8-installer \
         x11vnc xvfb \
-        firefox libnss3-tools
+        firefox libnss3-tools \
+        lxde
 
 RUN \
     mkdir -p ~/.vnc && \
-    touch ~/.vnc/passwd
+    touch ~/.vnc/passwd && \
+    x11vnc -storepasswd "1234" ~/.vnc/passwd
 
-RUN x11vnc -storepasswd "1234" ~/.vnc/passwd
-
-RUN sh -c 'echo "firefox https://edavki.durs.si" >> ~/.bashrc'
+RUN sh -c 'echo "startlxde &\nfirefox https://edavki.durs.si" >> ~/.bashrc'
 
 CMD ["/usr/bin/x11vnc", "-forever", "-usepw", "-create"]
