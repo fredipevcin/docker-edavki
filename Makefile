@@ -1,4 +1,4 @@
-IMAGE_NAME = fredipevcin/edavki-vnc
+IMAGE_NAME = fredipevcin/edavki
 CONTAINER_NAME = edavki
 
 .DEFAULT_GOAL := help
